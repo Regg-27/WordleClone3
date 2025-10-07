@@ -56,10 +56,8 @@ public class View extends Application {
         guessInput.setPromptText("Enter 5-letter word");
 
         Button checkButton = new Button("Check");
-        checkButton.setOnAction(e -> {
-            controller.submitGuess(guessInput.getText());
-            guessInput.clear();
-        });
+        checkButton.setOnAction(e -> controller.submitGuess(guessInput.getText()));
+
 
         Button resetButton = new Button("Reset");
         resetButton.setOnAction(e -> controller.resetGame());
@@ -86,9 +84,9 @@ public class View extends Application {
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 controller.submitGuess(guessInput.getText());
-                guessInput.clear();
             }
         });
+
 
         Model model = new Model();
         controller = new Controller(model, this);
@@ -185,6 +183,19 @@ public class View extends Application {
     public void setController(Controller controller) {
         this.controller = controller;
     }
+    public void clearInput() {
+        guessInput.clear();
+    }
+
+    public void keepInput(String text) {
+        guessInput.setText(text);
+    }
+    public void resetKeyboardColors() {
+        for (Button key : keyboardButtons.values()) {
+            key.setStyle("-fx-background-color: #E0E0E0; -fx-border-color: black;");
+        }
+    }
+
 
     public static void main(String[] args) {
         launch();

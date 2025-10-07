@@ -13,16 +13,24 @@ public class Controller {
     }
 
     public void submitGuess(String guess) {
-        if (!model.submitGuess(guess)) {
+        boolean valid = model.submitGuess(guess);
+        view.updateAll(); // always update tiles
+
+        if (!valid) {
             view.showMessage("Word must be " + Model.WORD_LENGTH + " letters and valid.");
+            view.keepInput(guess); // restore text if invalid
+        } else {
+            view.clearInput(); // only clear for valid guesses
         }
-        view.updateAll();
     }
+
 
     public void resetGame() {
         model.resetGame();
+        view.resetKeyboardColors();
         view.updateAll();
     }
+
 
     public Model getModel() {
         return model;
