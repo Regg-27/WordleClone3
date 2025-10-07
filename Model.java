@@ -49,7 +49,7 @@ public class Model implements Serializable {
 
     private void loadDictionary() {
         try {
-            InputStream file = getClass().getResourceAsStream("/Dictionary");
+            InputStream file = getClass().getResourceAsStream("/org/example/wordleclone3/Dictionary");
             if (file == null) throw new RuntimeException("Dictionary file not found.");
             BufferedReader reader = new BufferedReader(new InputStreamReader(file));
             String word;
